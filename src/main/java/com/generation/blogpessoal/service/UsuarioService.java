@@ -46,7 +46,6 @@ public class UsuarioService {
 			return Optional.ofNullable(usuarioRepository.save(usuario));
 
 		}
-
 		return Optional.empty();
 
 	}

@@ -52,14 +52,14 @@ public class PostagemController {
 		return ResponseEntity.ok(postagemRepository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
-	@PostMapping
+	@PostMapping("/cadastrar")
 	public ResponseEntity<Postagem>post(@Valid @RequestBody Postagem postagem){
 		if (temaRepository.existsById(postagem.getTema().getId()))
 			return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tema não existe!",null);
 	}
 	
-	@PutMapping
+	@PutMapping("/atualizar")
 	public ResponseEntity<Postagem>put(@Valid @RequestBody Postagem postagem) {
 		if (postagemRepository.existsById(postagem.getId())){
 			if (temaRepository.existsById(postagem.getTema().getId()))
